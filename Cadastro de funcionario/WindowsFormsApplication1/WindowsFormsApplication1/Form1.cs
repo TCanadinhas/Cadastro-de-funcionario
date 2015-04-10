@@ -7,26 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO.File;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
     public partial class Cadastro : Form
     {
         List<Funcionario> funcionarios = new List<Funcionario>();
-        
+        string arq = @"contas.txt";
+
+        public bool limpa = false;
         public Cadastro()
         {
             InitializeComponent();
+            lerFuncionarios();
         }
 
         private void AddClick(object sender, EventArgs e)
         {
             Funcionario f = new Funcionario();
             bool atualizar = true;
-            
-            //if (textBoxIdade.Text != 0
-            // atualizar listBox
+
 
             if (textBoxNome.Text == "")
             {
@@ -162,7 +163,6 @@ namespace WindowsFormsApplication1
             if (radioButtonFn.Checked == true) f.filhos = "não";
 
             
-            // organizar
             if (atualizar)
             {
                 funcionarios.Add(f);
@@ -171,16 +171,48 @@ namespace WindowsFormsApplication1
                 foreach (Funcionario func in funcionarios)
                 {
                     listBox.Items.Add(func.nome);
+                    GravaNovo(f);
                 }
 
                 Novo(null, null);
             }
         }
 
+        private void GravaNovo(Funcionario f)
+        {
+            using (StreamWriter file = new StreamWriter(arq, true))
+            {
+                file.WriteLine(f.funcionarioAsString());
+            }
+        }
+
+
+        private void lerFuncionarios()
+        {
+            Console.WriteLine("lendo...");
+            String line;
+            using (StreamReader file = new StreamReader(arq))
+            {
+                while ((line = file.ReadLine()) != null)
+                {
+                    Funcionario f = new Funcionario();
+                    f.funcionarioFromString(line);
+                    funcionarios.Add(f);
+                }
+            }
+            Console.WriteLine("leu");
+
+            listBox.Items.Clear();
+            foreach (Funcionario func in funcionarios)
+            {
+                listBox.Items.Add(func.nome);
+            }
+        }
+
+
         private void Sair(object sender, EventArgs e)
         {
             Application.Exit();
-            
         }
 
         private void Novo(object sender, EventArgs e)
@@ -209,18 +241,16 @@ namespace WindowsFormsApplication1
             radioButtonSo.Checked = false;
         }
 
+
         private void selecionou(object sender, EventArgs e)
         {
             int index = listBox.SelectedIndex;
             if (index >= 0)
             {
-                // podemos fazer tudo! yes, we can!!!
                 Funcionario fSelecionado = getFromIndex(index);
-
-                //MessageBox.Show(fSelecionado.nome);
                 carregarDados(fSelecionado);
             }
-            
+           
         }
 
         private Funcionario getFromIndex(int index)
@@ -228,9 +258,9 @@ namespace WindowsFormsApplication1
             return funcionarios.ElementAt(index);
         }
 
+
         private void carregarDados(Funcionario f)
         {
-            // carregar os dados para cada elemento do formulário
             textBoxNome.Text = f.nome;
             textBoxIdade.Text = f.idade;
             //textBoxQuantFilho = f.quantFilhos;
@@ -256,6 +286,29 @@ namespace WindowsFormsApplication1
 
             if (f.filhos == "sim") radioButtonFs.Checked = true;
             if (f.filhos == "não") radioButtonFn.Checked = true;
+        }
+
+
+        private void Excluir(object sender, EventArgs e)
+        {
+            int index = listBox.SelectedIndex;
+            listBox.Items.RemoveAt(index);
+            funcionarios.RemoveAt(index);
+            Novo(null, null);
+
+            //String[] lines = File.ReadAllLines(arq);
+            //List<string> linesList = lines.ToList();
+            //linesList.RemoveAt(index);
+            //lines = linesList.ToArray();
+            //File.WriteAllLines(arq, lines);
+
+            List<string> listaFuncionariosString = new List<string>();
+            foreach(Funcionario f in funcionarios) {
+                listaFuncionariosString.Add(f.funcionarioAsString());
+            }
+            string[] arrayFuncionariosString = listaFuncionariosString.ToArray();
+            File.WriteAllLines(arq, arrayFuncionariosString);
+
         }
 
     }
