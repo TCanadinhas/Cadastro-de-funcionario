@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO.File;
 
 namespace WindowsFormsApplication1
 {
@@ -13,6 +14,7 @@ namespace WindowsFormsApplication1
         public string sexo;
         public string eCivil;
         public string filhos;
+        public string quantFilhos;
         public string tSanguineo;
         public string telefone;
         public string email;
@@ -36,6 +38,9 @@ namespace WindowsFormsApplication1
             sexo = info[1];
             idade = info[2];
             telefone = info[3];
+
+            System.IO.File.WriteLine(@"C:\Users\talita.santos\Desktop\Trabs lolô\Cadastro de funcionario\WindowsFormsApplication1\contas.txt", info);
+
         }
 
     }

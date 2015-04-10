@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO.File;
 
 namespace WindowsFormsApplication1
 {
@@ -136,6 +137,7 @@ namespace WindowsFormsApplication1
 
             f.nome = textBoxNome.Text;
             f.idade = textBoxIdade.Text;
+            f.quantFilhos = textBoxQuantFilho.Text;
             f.tSanguineo = comboBoxTSanguineo.Text;
             f.telefone = textBoxTelefone.Text;
             f.email = textBoxEmail.Text;
@@ -230,7 +232,8 @@ namespace WindowsFormsApplication1
         {
             // carregar os dados para cada elemento do formulário
             textBoxNome.Text = f.nome;
-            textBoxIdade.Text = f.idade; 
+            textBoxIdade.Text = f.idade;
+            //textBoxQuantFilho = f.quantFilhos;
             comboBoxTSanguineo.Text = f.tSanguineo;
             textBoxTelefone.Text = f.telefone;
             textBoxEmail.Text = f.email;
