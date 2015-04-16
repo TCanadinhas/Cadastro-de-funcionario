@@ -50,10 +50,6 @@ namespace WindowsFormsApplication1
             bairro = info[13];
             cidade = info[14];
             estado = info[15];
-
-
-            //System.IO.File.WriteAllLines(@"C:\Users\talita.santos\Desktop\Trabs lolô\Cadastro de funcionario\WindowsFormsApplication1\contas.txt", info);
-
         }
 
         /*

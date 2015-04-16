@@ -93,7 +93,8 @@
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.labelObrEr = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
+            this.buttonAtualizar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBoxTipo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -312,7 +313,7 @@
             this.buttonAdicionar.TabIndex = 50;
             this.buttonAdicionar.Text = "ADICIONAR";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
-            this.buttonAdicionar.Click += new System.EventHandler(this.AddClick);
+            this.buttonAdicionar.Click += new System.EventHandler(this.Adicionar);
             // 
             // listBox
             // 
@@ -348,7 +349,7 @@
             // 
             this.novoToolStripMenuItem.Name = "novoToolStripMenuItem";
             this.novoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.novoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.novoToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.novoToolStripMenuItem.Text = "&Novo";
             this.novoToolStripMenuItem.Click += new System.EventHandler(this.Novo);
             // 
@@ -356,7 +357,7 @@
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.sairToolStripMenuItem.Text = "&Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.Sair);
             // 
@@ -800,23 +801,36 @@
             this.labelObrEr.Size = new System.Drawing.Size(0, 18);
             this.labelObrEr.TabIndex = 46;
             // 
-            // button1
+            // buttonExit
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Location = new System.Drawing.Point(509, 477);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 26);
-            this.button1.TabIndex = 58;
-            this.button1.Text = "EXCLUIR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Excluir);
+            this.buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonExit.Location = new System.Drawing.Point(509, 477);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(84, 26);
+            this.buttonExit.TabIndex = 58;
+            this.buttonExit.Text = "EXCLUIR";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Visible = false;
+            this.buttonExit.Click += new System.EventHandler(this.Excluir);
+            // 
+            // buttonAtualizar
+            // 
+            this.buttonAtualizar.Location = new System.Drawing.Point(212, 471);
+            this.buttonAtualizar.Name = "buttonAtualizar";
+            this.buttonAtualizar.Size = new System.Drawing.Size(222, 39);
+            this.buttonAtualizar.TabIndex = 59;
+            this.buttonAtualizar.Text = "ATUALIZAR";
+            this.buttonAtualizar.UseVisualStyleBackColor = true;
+            this.buttonAtualizar.Visible = false;
+            this.buttonAtualizar.Click += new System.EventHandler(this.Atualizar);
             // 
             // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 528);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonAtualizar);
+            this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox1);
@@ -934,7 +948,8 @@
         private System.Windows.Forms.Label labelObrEr;
         private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.Button buttonAtualizar;
     }
 }
 

@@ -16,3 +16,12 @@ C:\Users\talita.santos\Desktop\Trabs lolô\Cadastro de funcionario\WindowsFormsA
 C:\Users\talita.santos\Desktop\Trabs lolô\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Cadastro.resources
 C:\Users\talita.santos\Desktop\Trabs lolô\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\talita.santos\Desktop\Trabs lolô\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Cadastro.resources
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\seeduc\Documents\GitHub\Cadastro-de-funcionario\Cadastro de funcionario\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
