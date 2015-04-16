@@ -351,16 +351,13 @@ namespace WindowsFormsApplication1
 
         private void Atualizar(object sender, EventArgs e)
         {
-            int index = listBox.SelectedIndex;
+            //int index = listBox.SelectedIndex;
 
-            String[] lines = File.ReadAllLines(arq);
-            List<string> linesList = lines.ToList();
-            linesList.RemoveAt(index);
-            Funcionario fSelecionado = getFromIndex(index);
-            GravaNovo(fSelecionado);
-
-
-
+            //String[] lines = File.ReadAllLines(arq);
+            //List<string> linesList = lines.ToList();
+            //linesList.RemoveAt(index);
+            //Funcionario fSelecionado = getFromIndex(index);
+            //GravaNovo(fSelecionado);
         }
 
 
