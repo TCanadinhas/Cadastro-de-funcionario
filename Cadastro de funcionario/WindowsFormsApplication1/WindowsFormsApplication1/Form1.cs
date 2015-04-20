@@ -9,130 +9,131 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
+
 namespace WindowsFormsApplication1
 {
     public partial class Cadastro : Form
     {
         List<Funcionario> funcionarios = new List<Funcionario>();
         string arq = @"contas.txt";
-        
+
+        public bool limpa = false;
         public Cadastro()
         {
             InitializeComponent();
-            LerFuncionarios();
+            lerFuncionarios();
         }
 
-        private void Adicionar(object sender, EventArgs e)
+        private void AddClick(object sender, EventArgs e)
         {
             Funcionario f = new Funcionario();
             bool atualizar = true;
-
-
+           
             if (textBoxNome.Text == "")
             {
                 atualizar = false;
                 LabelObr.Text = "*";
             }
-            else LabelObr.Text = "";
+                else LabelObr.Text = "";
+            
 
-
-            if (textBoxIdade.Text == "")
+            if  (textBoxIdade.Text == "")
             {
                 atualizar = false;
                 labelObrI.Text = "*";
             }
-            else labelObrI.Text = "";
+                else labelObrI.Text = "";
 
             if (radioButtonSf.Checked == false && radioButtonSm.Checked == false && radioButtonSo.Checked == false)
             {
                 atualizar = false;
                 labelObrS.Text = "*";
             }
-            else labelObrS.Text = "";
+                else labelObrS.Text = "";
 
             if (radioButtonECc.Checked == false && radioButtonECs.Checked == false && radioButtonECv.Checked == false && radioButtonECd.Checked == false)
             {
                 atualizar = false;
                 labelObrEC.Text = "*";
             }
-            else labelObrEC.Text = "";
+                else labelObrEC.Text = "";
 
-            if (radioButtonFs.Checked == false && radioButtonFn.Checked == false)
+            if (radioButtonFs.Checked == false && radioButtonFn.Checked == false )
             {
                 atualizar = false;
                 labelObrF.Text = "*";
             }
-            else labelObrF.Text = "";
+                else labelObrF.Text = "";
 
             if (textBoxTelefone.Text == "")
             {
                 atualizar = false;
                 labelObrT.Text = "*";
             }
-            else labelObrT.Text = "";
+                else labelObrT.Text = "";
 
             if (textBoxEmail.Text == "")
             {
                 atualizar = false;
                 labelObrE.Text = "*";
             }
-            else labelObrE.Text = "";
+                else labelObrE.Text = "";
 
             if (comboBoxEstado.Text == "")
             {
                 atualizar = false;
                 labelObrES.Text = "*";
             }
-            else labelObrES.Text = "";
+                else labelObrES.Text = "";
 
             if (textBoxProfissao.Text == "")
             {
                 atualizar = false;
                 labelObrTr.Text = "*";
             }
-            else labelObrTr.Text = "";
+                else labelObrTr.Text = "";
 
             if (comboBoxSalario.Text == "")
             {
                 atualizar = false;
                 labelObrTs.Text = "*";
             }
-            else labelObrTs.Text = "";
+                else labelObrTs.Text = "";
 
             if (textBoxRua.Text == "")
             {
                 atualizar = false;
                 labelObrEr.Text = "*";
             }
-            else labelObrEr.Text = "";
+                else labelObrEr.Text = "";
 
             if (textBoxCep.Text == "")
             {
                 atualizar = false;
                 labelObrEce.Text = "*";
             }
-            else labelObrEce.Text = "";
+                else labelObrEce.Text = "";
 
             if (textBoxCidade.Text == "")
             {
                 atualizar = false;
                 labelObrEci.Text = "*";
             }
-            else labelObrEci.Text = "";
+                else labelObrEci.Text = "";
 
             if (textBoxBairro.Text == "")
             {
                 atualizar = false;
                 labelObrEb.Text = "*";
             }
-            else labelObrEb.Text = "";
+                else labelObrEb.Text = "";
 
             if (comboBoxTSanguineo.Text == "")
             {
                 atualizar = false;
                 labelObrTSang.Text = "*";
             }
-            else labelObrTSang.Text = "";
+                else labelObrTSang.Text = "";
 
 
             f.nome = textBoxNome.Text;
@@ -161,7 +162,7 @@ namespace WindowsFormsApplication1
             if (radioButtonFs.Checked == true) f.filhos = "sim";
             if (radioButtonFn.Checked == true) f.filhos = "não";
 
-
+            
             if (atualizar)
             {
                 funcionarios.Add(f);
@@ -169,35 +170,74 @@ namespace WindowsFormsApplication1
                 listBox.Items.Clear();
                 foreach (Funcionario func in funcionarios)
                 {
-                    listBox.Items.Add(func.nome);
+                    listBox.Items.Add(func.nome + ":" + " " + func.profissao);
                     GravaNovo(f);
                 }
 
                 Novo(null, null);
             }
+            if (!atualizar)
+            {
+                MessageBox.Show("Complete todos os campos obrigatórios");
+            }
+        }
+
+        private void GravaNovo(Funcionario f)
+        {
+            using (StreamWriter file = new StreamWriter(arq, true))
+            {
+                file.WriteLine(f.funcionarioAsString());
+            }
         }
 
 
+        private void lerFuncionarios()
+        {
+            Console.WriteLine("lendo...");
+            
+            if (!File.Exists(arq)) 
+            {
+                return;
+            }
+
+            String line;
+            using (StreamReader file = new StreamReader(arq))
+            {
+                while ((line = file.ReadLine()) != null)
+                {
+                    Funcionario f = new Funcionario();
+                    f.funcionarioFromString(line);
+                    funcionarios.Add(f);
+                }
+            }
+            Console.WriteLine("leu");
+            
+
+            //try
+            //{
+                
+            //}
+            //catch
+            //{
+            //    Console.WriteLine("não leu");
+            //}
+            
+
+            listBox.Items.Clear();
+            foreach (Funcionario func in funcionarios)
+            {
+                listBox.Items.Add(func.nome);
+            }
+        }
+
+
+        private void Sair(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private void Novo(object sender, EventArgs e)
         {
-            listBox.SelectedIndex = -1;
-
-            LabelObr.Text = "";
-            labelObrI.Text = "";
-            labelObrS.Text = "";
-            labelObrEC.Text = "";
-            labelObrF.Text = "";
-            labelObrT.Text = "";
-            labelObrE.Text = "";
-            labelObrES.Text = "";
-            labelObrTr.Text = "";
-            labelObrTs.Text = "";
-            labelObrEr.Text = "";
-            labelObrEce.Text = "";
-            labelObrEci.Text = "";
-            labelObrEb.Text = "";
-            labelObrTSang.Text = "";
-
             textBoxBairro.Text = "";
             textBoxCep.Text = "";
             textBoxCidade.Text = "";
@@ -208,9 +248,9 @@ namespace WindowsFormsApplication1
             textBoxQuantFilho.Text = "";
             textBoxRua.Text = "";
             textBoxTelefone.Text = "";
-            comboBoxEstado.Text = "";
-            comboBoxSalario.Text = "";
-            comboBoxTSanguineo.Text = "";
+            comboBoxEstado.Text = null;
+            comboBoxSalario.Text = null;
+            comboBoxTSanguineo.Text = null;
             radioButtonECc.Checked = false;
             radioButtonECd.Checked = false;
             radioButtonECs.Checked = false;
@@ -223,77 +263,26 @@ namespace WindowsFormsApplication1
         }
 
 
-        private void GravaNovo(Funcionario f)
-        {
-            using (StreamWriter file = new StreamWriter(arq, true))
-            {
-                file.WriteLine(f.funcionarioAsString());
-            }
-        }
-
-
-        private void LerFuncionarios()
-        {
-            String line;
-            using (StreamReader file = new StreamReader(arq))
-            {
-                while ((line = file.ReadLine()) != null)
-                {
-                    Funcionario f = new Funcionario();
-                    f.funcionarioFromString(line);
-                    funcionarios.Add(f);
-                }
-            }
-
-            listBox.Items.Clear();
-            foreach (Funcionario func in funcionarios)
-            {
-                listBox.Items.Add(func.nome);
-            }
-        }
-
-
         private void selecionou(object sender, EventArgs e)
         {
-            LabelObr.Text = "";
-            labelObrI.Text = "";
-            labelObrS.Text = "";
-            labelObrEC.Text = "";
-            labelObrF.Text = "";
-            labelObrT.Text = "";
-            labelObrE.Text = "";
-            labelObrES.Text = "";
-            labelObrTr.Text = "";
-            labelObrTs.Text = "";
-            labelObrEr.Text = "";
-            labelObrEce.Text = "";
-            labelObrEci.Text = "";
-            labelObrEb.Text = "";
-            labelObrTSang.Text = "";
-
+            Funcionario f = new Funcionario();
             int index = listBox.SelectedIndex;
             if (index >= 0)
             {
-                buttonExit.Visible = true;
-                buttonAtualizar.Visible = true;
                 Funcionario fSelecionado = getFromIndex(index);
                 carregarDados(fSelecionado);
+                buttonAdicionar.Visible = false;
+                bttEditar.Visible = true;
             }
-
-            if (index < 0)
-            {
-                buttonExit.Visible = false;
-                buttonAtualizar.Visible = false;                
-            }
-           
+            else
+                buttonAdicionar.Visible = true;
+                bttEditar.Visible = false;
         }
-
 
         private Funcionario getFromIndex(int index)
         {
             return funcionarios.ElementAt(index);
         }
-
 
         private void carregarDados(Funcionario f)
         {
@@ -328,7 +317,6 @@ namespace WindowsFormsApplication1
         private void Excluir(object sender, EventArgs e)
         {
             int index = listBox.SelectedIndex;
-            
             listBox.Items.RemoveAt(index);
             funcionarios.RemoveAt(index);
             Novo(null, null);
@@ -348,24 +336,22 @@ namespace WindowsFormsApplication1
 
         }
 
-
-        private void Atualizar(object sender, EventArgs e)
+        private void NumbersOnly(object sender, KeyPressEventArgs e)
         {
-            //int index = listBox.SelectedIndex;
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
 
-            //String[] lines = File.ReadAllLines(arq);
-            //List<string> linesList = lines.ToList();
-            //linesList.RemoveAt(index);
-            //Funcionario fSelecionado = getFromIndex(index);
-            //GravaNovo(fSelecionado);
+            textBoxIdade.MaxLength = 2;
+            textBoxCep.MaxLength = 8;
+            textBoxTelefone.MaxLength = 9;
         }
 
-
-        private void Sair(object sender, EventArgs e)
+        private void LettersOnly(object sender, KeyPressEventArgs e)
         {
-            Application.Exit();
+                e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
         }
-
     }
 
 }

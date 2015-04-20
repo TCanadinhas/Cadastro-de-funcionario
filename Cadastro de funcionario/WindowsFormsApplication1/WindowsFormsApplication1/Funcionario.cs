@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1
 
         public void funcionarioFromString(string data)
         {
+            Console.WriteLine("funcionarioFromString: " + data);
             string[] info = data.Split('#');
             nome = info[0];
             idade = info[1]; 
@@ -50,6 +51,10 @@ namespace WindowsFormsApplication1
             bairro = info[13];
             cidade = info[14];
             estado = info[15];
+
+
+            //System.IO.File.WriteAllLines(@"C:\Users\talita.santos\Desktop\Trabs lolô\Cadastro de funcionario\WindowsFormsApplication1\contas.txt", info);
+
         }
 
         /*

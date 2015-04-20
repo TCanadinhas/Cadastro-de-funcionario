@@ -93,8 +93,8 @@
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.labelObrEr = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.buttonExit = new System.Windows.Forms.Button();
-            this.buttonAtualizar = new System.Windows.Forms.Button();
+            this.btt_Excluir = new System.Windows.Forms.Button();
+            this.bttEditar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.groupBoxTipo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,6 +122,7 @@
             this.textBoxNome.Name = "textBoxNome";
             this.textBoxNome.Size = new System.Drawing.Size(291, 20);
             this.textBoxNome.TabIndex = 1;
+            this.textBoxNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LettersOnly);
             // 
             // label9
             // 
@@ -137,6 +138,7 @@
             this.textBoxIdade.Name = "textBoxIdade";
             this.textBoxIdade.Size = new System.Drawing.Size(100, 20);
             this.textBoxIdade.TabIndex = 2;
+            this.textBoxIdade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumbersOnly);
             // 
             // radioButtonSf
             // 
@@ -259,6 +261,7 @@
             this.textBoxTelefone.Name = "textBoxTelefone";
             this.textBoxTelefone.Size = new System.Drawing.Size(193, 20);
             this.textBoxTelefone.TabIndex = 14;
+            this.textBoxTelefone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumbersOnly);
             // 
             // textBoxEmail
             // 
@@ -289,6 +292,7 @@
             this.textBoxCep.Name = "textBoxCep";
             this.textBoxCep.Size = new System.Drawing.Size(152, 20);
             this.textBoxCep.TabIndex = 46;
+            this.textBoxCep.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumbersOnly);
             // 
             // textBoxBairro
             // 
@@ -307,13 +311,13 @@
             // buttonAdicionar
             // 
             this.buttonAdicionar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonAdicionar.Location = new System.Drawing.Point(212, 471);
+            this.buttonAdicionar.Location = new System.Drawing.Point(223, 469);
             this.buttonAdicionar.Name = "buttonAdicionar";
             this.buttonAdicionar.Size = new System.Drawing.Size(222, 39);
             this.buttonAdicionar.TabIndex = 50;
             this.buttonAdicionar.Text = "ADICIONAR";
             this.buttonAdicionar.UseVisualStyleBackColor = true;
-            this.buttonAdicionar.Click += new System.EventHandler(this.Adicionar);
+            this.buttonAdicionar.Click += new System.EventHandler(this.AddClick);
             // 
             // listBox
             // 
@@ -384,6 +388,7 @@
             // 
             // comboBoxTSanguineo
             // 
+            this.comboBoxTSanguineo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTSanguineo.FormattingEnabled = true;
             this.comboBoxTSanguineo.Items.AddRange(new object[] {
             "A+",
@@ -401,6 +406,7 @@
             // 
             // comboBoxEstado
             // 
+            this.comboBoxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxEstado.FormattingEnabled = true;
             this.comboBoxEstado.Items.AddRange(new object[] {
             "Acre - AC",
@@ -642,6 +648,7 @@
             // 
             // comboBoxSalario
             // 
+            this.comboBoxSalario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSalario.FormattingEnabled = true;
             this.comboBoxSalario.Items.AddRange(new object[] {
             "INFERIOR A 788,00",
@@ -801,36 +808,34 @@
             this.labelObrEr.Size = new System.Drawing.Size(0, 18);
             this.labelObrEr.TabIndex = 46;
             // 
-            // buttonExit
+            // btt_Excluir
             // 
-            this.buttonExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonExit.Location = new System.Drawing.Point(509, 477);
-            this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(84, 26);
-            this.buttonExit.TabIndex = 58;
-            this.buttonExit.Text = "EXCLUIR";
-            this.buttonExit.UseVisualStyleBackColor = true;
-            this.buttonExit.Visible = false;
-            this.buttonExit.Click += new System.EventHandler(this.Excluir);
+            this.btt_Excluir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btt_Excluir.Location = new System.Drawing.Point(529, 482);
+            this.btt_Excluir.Name = "btt_Excluir";
+            this.btt_Excluir.Size = new System.Drawing.Size(84, 26);
+            this.btt_Excluir.TabIndex = 58;
+            this.btt_Excluir.Text = "EXCLUIR";
+            this.btt_Excluir.UseVisualStyleBackColor = true;
+            this.btt_Excluir.Click += new System.EventHandler(this.Excluir);
             // 
-            // buttonAtualizar
+            // bttEditar
             // 
-            this.buttonAtualizar.Location = new System.Drawing.Point(212, 471);
-            this.buttonAtualizar.Name = "buttonAtualizar";
-            this.buttonAtualizar.Size = new System.Drawing.Size(222, 39);
-            this.buttonAtualizar.TabIndex = 59;
-            this.buttonAtualizar.Text = "ATUALIZAR";
-            this.buttonAtualizar.UseVisualStyleBackColor = true;
-            this.buttonAtualizar.Visible = false;
-            this.buttonAtualizar.Click += new System.EventHandler(this.Atualizar);
+            this.bttEditar.Location = new System.Drawing.Point(223, 469);
+            this.bttEditar.Name = "bttEditar";
+            this.bttEditar.Size = new System.Drawing.Size(222, 39);
+            this.bttEditar.TabIndex = 59;
+            this.bttEditar.Text = "EDITAR";
+            this.bttEditar.UseVisualStyleBackColor = true;
+            this.bttEditar.Visible = false;
             // 
             // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(903, 528);
-            this.Controls.Add(this.buttonAtualizar);
-            this.Controls.Add(this.buttonExit);
+            this.Controls.Add(this.bttEditar);
+            this.Controls.Add(this.btt_Excluir);
             this.Controls.Add(this.groupBox12);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox1);
@@ -948,8 +953,8 @@
         private System.Windows.Forms.Label labelObrEr;
         private System.Windows.Forms.ToolStripMenuItem novoToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button buttonExit;
-        private System.Windows.Forms.Button buttonAtualizar;
+        private System.Windows.Forms.Button btt_Excluir;
+        private System.Windows.Forms.Button bttEditar;
     }
 }
 
